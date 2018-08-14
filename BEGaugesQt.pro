@@ -30,12 +30,16 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     src/CircularGauges/cgitem.cpp \
-    src/CircularGauges/cgwidget.cpp
+    src/CircularGauges/cgwidget.cpp \
+    src/CircularGauges/cgscale.cpp \
+    src/CircularGauges/cgarc.cpp
 
 HEADERS += \
         mainwindow.h \
     src/CircularGauges/cgitem.h \
-    src/CircularGauges/cgwidget.h
+    src/CircularGauges/cgwidget.h \
+    src/CircularGauges/cgscale.h \
+    src/CircularGauges/cgarc.h
 
 FORMS += \
         mainwindow.ui
