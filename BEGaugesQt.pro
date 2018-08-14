@@ -32,14 +32,20 @@ SOURCES += \
     src/CircularGauges/cgitem.cpp \
     src/CircularGauges/cgwidget.cpp \
     src/CircularGauges/cgscale.cpp \
-    src/CircularGauges/cgarc.cpp
+    src/CircularGauges/cgarc.cpp \
+    src/CircularGauges/cgneedle.cpp \
+    src/CircularGauges/cgtriangleneedle.cpp \
+    src/CircularGauges/cgtrapezeneedle.cpp
 
 HEADERS += \
         mainwindow.h \
     src/CircularGauges/cgitem.h \
     src/CircularGauges/cgwidget.h \
     src/CircularGauges/cgscale.h \
-    src/CircularGauges/cgarc.h
+    src/CircularGauges/cgarc.h \
+    src/CircularGauges/cgneedle.h \
+    src/CircularGauges/cgtriangleneedle.h \
+    src/CircularGauges/cgtrapezeneedle.h
 
 FORMS += \
         mainwindow.ui
