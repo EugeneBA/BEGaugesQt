@@ -27,9 +27,9 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QCommandLinkButton" name="commandLinkButton">
+        <widget class="QCommandLinkButton" name="BtnClockWidget">
          <property name="text">
-          <string>Simple Clock</string>
+          <string>Clock Widget</string>
          </property>
         </widget>
        </item>
