@@ -32,6 +32,7 @@ public:
 
     static double DegreesToRadians(double deg);
     static double RadiansToDegrees(double rad);
+    static void SetInRect(const QRectF& out,QRectF& in);
 
 protected:
     virtual QSize minimumSizeHint() const;

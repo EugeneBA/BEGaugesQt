@@ -36,7 +36,8 @@ SOURCES += \
     src/CircularGauges/cgneedle.cpp \
     src/CircularGauges/cgtriangleneedle.cpp \
     src/CircularGauges/cgtrapezeneedle.cpp \
-    demo/clockwidget.cpp
+    demo/clockwidget.cpp \
+    src/CircularGauges/cgvalues.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +48,8 @@ HEADERS += \
     src/CircularGauges/cgneedle.h \
     src/CircularGauges/cgtriangleneedle.h \
     src/CircularGauges/cgtrapezeneedle.h \
-    demo/clockwidget.h
+    demo/clockwidget.h \
+    src/CircularGauges/cgvalues.h
 
 FORMS += \
         mainwindow.ui

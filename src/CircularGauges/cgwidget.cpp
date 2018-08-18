@@ -284,3 +284,22 @@ void CGWidget::setGaugeColor(const QColor &gaugeColor)
 {
     _gaugeColor = gaugeColor;
 }
+
+void CGWidget::SetInRect(const QRectF &out, QRectF &in)
+{
+ if(out.contains(in))
+     return;
+
+ if(in.top()<out.top())
+     in.moveTop(out.top());
+
+ if(in.bottom()>out.bottom())
+     in.moveBottom(out.bottom());
+
+ if(in.left()<out.left())
+     in.moveLeft(out.left());
+
+ if(in.right()>out.right())
+     in.moveRight(out.right());
+}
+

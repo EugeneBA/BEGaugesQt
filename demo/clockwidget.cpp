@@ -1,5 +1,6 @@
 #include "clockwidget.h"
 #include "src/CircularGauges/cgarc.h"
+#include "src/CircularGauges/cgvalues.h"
 #include "src/CircularGauges/cgtrapezeneedle.h"
 #include "src/CircularGauges/cgtriangleneedle.h"
 
@@ -47,13 +48,13 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
 //        _image->setAngle(90);
 //        mItems.append(_image);
 
-//        _vals = new QCValues(this);
-//        _vals->setrPos(0.80f);
-//        _vals->setDegreeRange(180,0);
-//        _vals->setValueRange(0,30);
-//        _vals->setStep(10);
-//        _vals->setrFontSize(38);
-//        mItems.append(_vals);
+        auto _vals = new CGValues(this);
+        _vals->setrPos(0.85f);
+        _vals->setDegreeRange(90,-270);
+        _vals->setValueRange(0,12);
+        _vals->setStep(1);
+        _vals->setrFontSize(38);
+        mItems.append(_vals);
 
 
 //        _labelValue = new QCLabel(this);
