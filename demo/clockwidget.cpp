@@ -1,5 +1,6 @@
 #include "clockwidget.h"
 #include "src/CircularGauges/cgarc.h"
+#include "src/CircularGauges/cgticks.h"
 #include "src/CircularGauges/cgvalues.h"
 #include "src/CircularGauges/cgtrapezeneedle.h"
 #include "src/CircularGauges/cgtriangleneedle.h"
@@ -31,14 +32,24 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
 //        _inArc->setDegreeRange(180,0);
 //        mItems.append(_inArc);
 
-//        _ticks = new QCTicks(this);
-//        _ticks->setrPos(0.95f);
-//        _ticks->setrLength(0.05f);
-//        _ticks->setDegreeRange(180,0);
+        auto _ticks = new CGTicks(this);
+        _ticks->setrPos(0.97f);
+        _ticks->setrLength(0.03f);
+        _ticks->setDegreeRange(90,-270);
 
-//        _ticks->setValueRange(0,30);
-//        _ticks->setStep(5);
-//        mItems.append(_ticks);
+        _ticks->setValueRange(0,60);
+        _ticks->setStep(1);
+        mItems.append(_ticks);
+
+        auto _bigTicks = new CGTicks(this);
+        _bigTicks->setrPos(0.95f);
+        _bigTicks->setrLength(0.05f);
+        _bigTicks->setrWidth(5);
+        _bigTicks->setDegreeRange(90,-270);
+
+        _bigTicks->setValueRange(0,12);
+        _bigTicks->setStep(1);
+        mItems.append(_bigTicks);
 
 //        _image = new QCImage(this);
 //        _image->setrPos(0.73f);
@@ -50,8 +61,8 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
 
         auto _vals = new CGValues(this);
         _vals->setrPos(0.85f);
-        _vals->setDegreeRange(90,-270);
-        _vals->setValueRange(0,12);
+        _vals->setDegreeRange(60,-270);
+        _vals->setValueRange(1,12);
         _vals->setStep(1);
         _vals->setrFontSize(38);
         mItems.append(_vals);
@@ -83,7 +94,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
 
         _secondNeedle = new CGTriangleNeedle(this);
         //_needle->setrPos(0.605f);
-        _secondNeedle->setrLength(0.95f);
+        _secondNeedle->setrLength(0.97f);
         _secondNeedle->setrWidth(5);
         _secondNeedle->setDegreeRange(90,-270);
         _secondNeedle->setValueRange(0,60);
