@@ -23,7 +23,7 @@
        </font>
       </property>
       <property name="title">
-       <string>Circle Gauges</string>
+       <string>Circular Gauges</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
