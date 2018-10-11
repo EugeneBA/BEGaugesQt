@@ -12,4 +12,4 @@ Examples of usage the library are given in the demo.
 MIT © Barsukov Eugene
 
 ## Port
-The same [library for C #] (https://github.com/EugeneBA/BEGaugesCsh)
+The same [library for C #](https://github.com/EugeneBA/BEGaugesCsh)
