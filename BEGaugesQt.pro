@@ -38,7 +38,8 @@ SOURCES += \
     src/CircularGauges/cgtrapezeneedle.cpp \
     demo/clockwidget.cpp \
     src/CircularGauges/cgvalues.cpp \
-    src/CircularGauges/cgticks.cpp
+    src/CircularGauges/cgticks.cpp \
+    demo/voltmeterwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -51,7 +52,8 @@ HEADERS += \
     src/CircularGauges/cgtrapezeneedle.h \
     demo/clockwidget.h \
     src/CircularGauges/cgvalues.h \
-    src/CircularGauges/cgticks.h
+    src/CircularGauges/cgticks.h \
+    demo/voltmeterwidget.h
 
 FORMS += \
         mainwindow.ui
