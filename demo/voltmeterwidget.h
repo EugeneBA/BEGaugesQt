@@ -4,7 +4,8 @@
 #include <QTime>
 
 class CGTrapezeNeedle;
-class CGTriangleNeedle;
+class CGTicks;
+class CGValues;
 
 class VoltmeterWidget:public CGWidget
 {
@@ -15,10 +16,14 @@ class VoltmeterWidget:public CGWidget
         void setTime(QTime value);
         void setTime();
 
+        void setValue(float value);
+        void setRange(float min, float max);
+
     private:
-        CGTrapezeNeedle* _hourNeedle;
-        CGTrapezeNeedle* _minuteNeedle;
-        CGTriangleNeedle* _secondNeedle;
+        CGTrapezeNeedle* _needle;
+        CGTicks* _ticks;
+        CGTicks* _bigTicks;
+        CGValues* _vals;
 
     public slots:
         void OnTimerEvent();
