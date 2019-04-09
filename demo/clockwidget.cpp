@@ -24,7 +24,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
         _outArc->setrPos(1);
         _outArc->setrWidth(10);
         _outArc->setDegreeRange(90,-270);
-        mItems.append(_outArc);
+        _items.append(_outArc);
 
 //        _inArc = new QCArc(this);
 //        _inArc->setrPos(0.6f);
@@ -39,7 +39,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
 
         _ticks->setValueRange(0,60);
         _ticks->setStep(1);
-        mItems.append(_ticks);
+        _items.append(_ticks);
 
         auto _bigTicks = new CGTicks(this);
         _bigTicks->setrPos(0.95f);
@@ -49,7 +49,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
 
         _bigTicks->setValueRange(0,12);
         _bigTicks->setStep(1);
-        mItems.append(_bigTicks);
+        _items.append(_bigTicks);
 
 //        _image = new QCImage(this);
 //        _image->setrPos(0.73f);
@@ -65,7 +65,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
         _vals->setValueRange(1,12);
         _vals->setStep(1);
         _vals->setrFontSize(38);
-        mItems.append(_vals);
+        _items.append(_vals);
 
 
 //        _labelValue = new QCLabel(this);
@@ -81,7 +81,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
         _hourNeedle->setDegreeRange(90,-270);
         _hourNeedle->setValueRange(0,12);
         _hourNeedle->setColor(Qt::black);
-        mItems.append(_hourNeedle);
+        _items.append(_hourNeedle);
 
         _minuteNeedle = new CGTrapezeNeedle(this);
         //_needle->setrPos(0.605f);
@@ -90,7 +90,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
         _minuteNeedle->setDegreeRange(90,-270);
         _minuteNeedle->setValueRange(0,60);
         _minuteNeedle->setColor(Qt::black);
-        mItems.append(_minuteNeedle);
+        _items.append(_minuteNeedle);
 
         _secondNeedle = new CGTriangleNeedle(this);
         //_needle->setrPos(0.605f);
@@ -99,7 +99,7 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
         _secondNeedle->setDegreeRange(90,-270);
         _secondNeedle->setValueRange(0,60);
         _secondNeedle->setColor(Qt::red);
-        mItems.append(_secondNeedle);
+        _items.append(_secondNeedle);
 
         setGaugeColor(Qt::black);
         setTime();

@@ -1,17 +1,17 @@
-#include "voltmeterwidget.h"
+#include "arrowmeterwidget.h"
 #include "src/CircularGauges/cgarc.h"
 #include "src/CircularGauges/cgticks.h"
 #include "src/CircularGauges/cgvalues.h"
 #include "src/CircularGauges/cgtrapezeneedle.h"
-#include "src/CircularGauges/cgtriangleneedle.h"
+#include "src/CircularGauges/cgtext.h"
 
 #include <QTimer>
 
-VoltmeterWidget::VoltmeterWidget(QWidget *parent) : CGWidget(parent)
+ArrowMeterWidget::ArrowMeterWidget(QWidget *parent) : CGWidget(parent)
 {
     _centerPos = BottomCenter;
 
-    setWindowTitle("Voltmeter");
+    setWindowTitle("Multimeter");
 
     auto margins = contentsMargins();
     margins.setBottom(5);
@@ -27,20 +27,20 @@ VoltmeterWidget::VoltmeterWidget(QWidget *parent) : CGWidget(parent)
     _outArc->setrPos(1);
     _outArc->setrWidth(8);
     _outArc->setDegreeRange(minAngle,maxAngle);
-    mItems.append(_outArc);
+    _items.append(_outArc);
 
     _ticks = new CGTicks(this);
     _ticks->setrPos(0.96f);
     _ticks->setrLength(0.04f);
     _ticks->setDegreeRange(minAngle,maxAngle);
-    mItems.append(_ticks);
+    _items.append(_ticks);
 
     _bigTicks = new CGTicks(this);
     _bigTicks->setrPos(0.925f);
     _bigTicks->setrLength(0.075f);
     _bigTicks->setrWidth(4);
     _bigTicks->setDegreeRange(minAngle,maxAngle);
-    mItems.append(_bigTicks);
+    _items.append(_bigTicks);
 
     //        _image = new QCImage(this);
     //        _image->setrPos(0.73f);
@@ -54,14 +54,20 @@ VoltmeterWidget::VoltmeterWidget(QWidget *parent) : CGWidget(parent)
     _vals->setrPos(1.07f);
     _vals->setDegreeRange(minAngle,maxAngle);
     _vals->setrFontSize(32);
-    mItems.append(_vals);
+    _items.append(_vals);
 
 
-    //        _labelValue = new QCLabel(this);
-    //        _labelValue->setrPos(0.30f);
-    //        _labelValue->setAngle(90);
-    //        _labelValue->setrFontSize(50);
-    //        mItems.append(_labelValue);
+    _value = new CGText(this);
+    _value->setrPos(0.60f);
+    _value->setAngle(90);
+    _value->setrFontSize(20);
+    _items.append(_value);
+
+    _mode = new CGText(this);
+    _mode->setrPos(0.30f);
+    _mode->setAngle(90);
+    _mode->setrFontSize(20);
+    _items.append(_mode);
 
     _needle = new CGTrapezeNeedle(this);
     //_needle->setrPos(0.605f);
@@ -69,7 +75,7 @@ VoltmeterWidget::VoltmeterWidget(QWidget *parent) : CGWidget(parent)
     _needle->setrWidth(5);
     _needle->setDegreeRange(minAngle,maxAngle);
     _needle->setColor(Qt::black);
-    mItems.append(_needle);
+    _items.append(_needle);
 
     setRange(0, 60);
     setGaugeColor(Qt::black);
@@ -81,12 +87,12 @@ VoltmeterWidget::VoltmeterWidget(QWidget *parent) : CGWidget(parent)
     timer->start();
 }
 
-void VoltmeterWidget::setValue(float value)
+void ArrowMeterWidget::setValue(float value)
 {
     _needle->setCurrentValue(value);
 }
 
-void VoltmeterWidget::setRange(float min, float max)
+void ArrowMeterWidget::setRange(float min, float max)
 {
     float N = 4;
     float delta = (max-min)/N;
@@ -100,17 +106,17 @@ void VoltmeterWidget::setRange(float min, float max)
     _needle->setValueRange(min,max);
 }
 
-void VoltmeterWidget::setTime(QTime value)
+void ArrowMeterWidget::setTime(QTime value)
 {
     _needle->setCurrentValue(value.second());
 }
 
-void VoltmeterWidget::setTime()
+void ArrowMeterWidget::setTime()
 {
     setTime(QTime::currentTime());
 }
 
-void VoltmeterWidget::OnTimerEvent()
+void ArrowMeterWidget::OnTimerEvent()
 {
     setTime();
 }

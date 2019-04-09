@@ -6,12 +6,13 @@
 class CGTrapezeNeedle;
 class CGTicks;
 class CGValues;
+class CGText;
 
-class VoltmeterWidget:public CGWidget
+class ArrowMeterWidget:public CGWidget
 {
     Q_OBJECT
     public:
-        explicit VoltmeterWidget(QWidget *parent = nullptr);
+        explicit ArrowMeterWidget(QWidget *parent = nullptr);
 
         void setTime(QTime value);
         void setTime();
@@ -24,6 +25,8 @@ class VoltmeterWidget:public CGWidget
         CGTicks* _ticks;
         CGTicks* _bigTicks;
         CGValues* _vals;
+        CGText* _value;
+        CGText* _mode;
 
     public slots:
         void OnTimerEvent();

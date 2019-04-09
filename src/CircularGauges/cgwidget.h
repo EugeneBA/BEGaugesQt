@@ -40,7 +40,7 @@ protected:
     void addItem(CGItem* item, float position);
     int removeItem(CGItem* item);
     QList <CGItem*> items();
-    QList <CGItem*> mItems;
+    QList <CGItem*> _items;
 
     EnumCenterPos _centerPos;    
 

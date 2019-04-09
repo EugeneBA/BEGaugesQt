@@ -243,17 +243,17 @@ void CGWidget::addItem(CGItem *item,float position)
     // takes parentship of the item
     item->setParent(this);
     item->setrPos(position);
-    mItems.append(item);
+    _items.append(item);
 }
 
 int CGWidget::removeItem(CGItem *item)
 {
-    return mItems.removeAll(item);
+    return _items.removeAll(item);
 }
 
 QList<CGItem *> CGWidget::items()
 {
-    return mItems;
+    return _items;
 }
 
 void CGWidget::paintEvent(QPaintEvent* /*paintEvt*/)
@@ -261,7 +261,7 @@ void CGWidget::paintEvent(QPaintEvent* /*paintEvt*/)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    foreach (CGItem * item, mItems)
+    foreach (CGItem * item, _items)
     {
         item->draw(&painter);
     }

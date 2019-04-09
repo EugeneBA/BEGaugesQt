@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "demo/clockwidget.h"
-#include "demo/voltmeterwidget.h"
+#include "demo/arrowmeterwidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +23,6 @@ void MainWindow::on_BtnClockWidget_clicked()
 
 void MainWindow::on_BtnVoltmeterWidget_clicked()
 {
-    auto widget  = new VoltmeterWidget();
+    auto widget  = new ArrowMeterWidget();
     widget->show();
 }

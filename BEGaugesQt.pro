@@ -39,7 +39,8 @@ SOURCES += \
     demo/clockwidget.cpp \
     src/CircularGauges/cgvalues.cpp \
     src/CircularGauges/cgticks.cpp \
-    demo/voltmeterwidget.cpp
+    src/CircularGauges/cgtext.cpp \
+    demo/arrowmeterwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +54,8 @@ HEADERS += \
     demo/clockwidget.h \
     src/CircularGauges/cgvalues.h \
     src/CircularGauges/cgticks.h \
-    demo/voltmeterwidget.h
+    src/CircularGauges/cgtext.h \
+    demo/arrowmeterwidget.h
 
 FORMS += \
         mainwindow.ui
