@@ -17,7 +17,7 @@ public:
 private slots:
     void on_BtnClockWidget_clicked();
 
-    void on_BtnVoltmeterWidget_clicked();
+    void on_BtnMultimeterWidget_clicked();
 
 private:
     Ui::MainWindow *ui;

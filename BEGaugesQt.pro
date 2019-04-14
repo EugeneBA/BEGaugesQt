@@ -40,7 +40,8 @@ SOURCES += \
     src/CircularGauges/cgvalues.cpp \
     src/CircularGauges/cgticks.cpp \
     src/CircularGauges/cgtext.cpp \
-    demo/arrowmeterwidget.cpp
+    demo/arrowmeterwidget.cpp \
+    demo/multimeterwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +56,9 @@ HEADERS += \
     src/CircularGauges/cgvalues.h \
     src/CircularGauges/cgticks.h \
     src/CircularGauges/cgtext.h \
-    demo/arrowmeterwidget.h
+    demo/arrowmeterwidget.h \
+    demo/multimeterwidget.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    demo/multimeterwidget.ui

@@ -34,9 +34,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QCommandLinkButton" name="BtnVoltmeterWidget">
+        <widget class="QCommandLinkButton" name="BtnMultimeterWidget">
          <property name="text">
-          <string>Voltmeter Widget</string>
+          <string>Multimeter Widget</string>
          </property>
         </widget>
        </item>
