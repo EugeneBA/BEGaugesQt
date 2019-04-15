@@ -108,6 +108,8 @@ ClockWidget::ClockWidget(QWidget *parent) : CGWidget(parent)
         timer->setInterval(500);
         connect(timer, SIGNAL(timeout()), this, SLOT(OnTimerEvent()));
         timer->start();
+
+
 }
 
 void ClockWidget::setTime(QTime value)

@@ -1,11 +1,38 @@
 #include "multimeterwidget.h"
 #include "ui_multimeterwidget.h"
 
+#include "QtCore/qmath.h"
+#include "QTimer"
+
 MultimeterWidget::MultimeterWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MultimeterWidget)
 {
     ui->setupUi(this);
+
+    setWindowTitle("Multimeter");
+
+    _startTime = QDateTime::currentDateTime();
+    QTimer *timer = new QTimer(this);
+    timer->setInterval(500);
+    connect(timer, SIGNAL(timeout()), this, SLOT(OnTimerEvent()));
+    timer->start();
+}
+
+void MultimeterWidget::OnTimerEvent()
+{
+    auto curentTime = QDateTime::currentDateTime();
+
+    double t = _startTime.msecsTo(curentTime)*0.001;
+
+    double val = qSin(t);
+    if(qFabs(val)<0.1)
+        val = 0.0;
+
+    if(ui->_btnR2k->isChecked()||ui->_btnR200->isChecked())
+        val+=1.0;
+
+
 }
 
 MultimeterWidget::~MultimeterWidget()

@@ -2,6 +2,8 @@
 #define MULTIMETERWIDGET_H
 
 #include <QWidget>
+#include <QDateTime>
+
 
 namespace Ui {
 class MultimeterWidget;
@@ -15,12 +17,13 @@ public:
     explicit MultimeterWidget(QWidget *parent = nullptr);
     ~MultimeterWidget();
 
+
 private slots:
+    void OnTimerEvent();
+
     void on__btnClose_clicked();
 
     void on__btnU2_toggled(bool checked);
-
-    void on__btnU200_toggled(bool checked);
 
     void on__btnU200m_toggled(bool checked);
 
@@ -34,6 +37,7 @@ private slots:
 
 private:
     Ui::MultimeterWidget *ui;
+    QDateTime _startTime;
 };
 
 #endif // MULTIMETERWIDGET_H
