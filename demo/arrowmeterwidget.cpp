@@ -77,14 +77,8 @@ ArrowMeterWidget::ArrowMeterWidget(QWidget *parent) : CGWidget(parent)
     _needle->setColor(Qt::black);
     _items.append(_needle);
 
-    setRange(0, 60);
-    setGaugeColor(Qt::black);
-    setTime();
-
-    QTimer *timer = new QTimer(this);
-    timer->setInterval(500);
-    connect(timer, SIGNAL(timeout()), this, SLOT(OnTimerEvent()));
-    timer->start();
+    setRange(0, 100);
+    setGaugeColor(Qt::black);    
 }
 
 void ArrowMeterWidget::setValue(float value)
@@ -104,19 +98,4 @@ void ArrowMeterWidget::setRange(float min, float max)
     _vals->setValueRange(min,max);
     _vals->setStep(delta);
     _needle->setValueRange(min,max);
-}
-
-void ArrowMeterWidget::setTime(QTime value)
-{
-    _needle->setCurrentValue(value.second());
-}
-
-void ArrowMeterWidget::setTime()
-{
-    setTime(QTime::currentTime());
-}
-
-void ArrowMeterWidget::OnTimerEvent()
-{
-    setTime();
 }

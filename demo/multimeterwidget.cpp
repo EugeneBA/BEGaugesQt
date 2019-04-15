@@ -14,7 +14,7 @@ MultimeterWidget::MultimeterWidget(QWidget *parent) :
 
     _startTime = QDateTime::currentDateTime();
     QTimer *timer = new QTimer(this);
-    timer->setInterval(500);
+    timer->setInterval(200);
     connect(timer, SIGNAL(timeout()), this, SLOT(OnTimerEvent()));
     timer->start();
 }
@@ -25,7 +25,8 @@ void MultimeterWidget::OnTimerEvent()
 
     double t = _startTime.msecsTo(curentTime)*0.001;
 
-    double val = qSin(t);
+    const double f = 0.05;
+    double val = qSin(2*M_PI*f*t);
     if(qFabs(val)<0.1)
         val = 0.0;
 
@@ -33,6 +34,7 @@ void MultimeterWidget::OnTimerEvent()
         val+=1.0;
 
 
+    ui->_meter->setValue(val*100);
 }
 
 MultimeterWidget::~MultimeterWidget()

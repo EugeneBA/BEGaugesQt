@@ -1,7 +1,6 @@
 #pragma once
 
 #include "src/CircularGauges/cgwidget.h"
-#include <QTime>
 
 class CGTrapezeNeedle;
 class CGTicks;
@@ -14,9 +13,6 @@ class ArrowMeterWidget:public CGWidget
     public:
         explicit ArrowMeterWidget(QWidget *parent = nullptr);
 
-        void setTime(QTime value);
-        void setTime();
-
         void setValue(float value);
         void setRange(float min, float max);
 
@@ -26,9 +22,6 @@ class ArrowMeterWidget:public CGWidget
         CGTicks* _bigTicks;
         CGValues* _vals;
         CGText* _value;
-        CGText* _mode;
-
-    public slots:
-        void OnTimerEvent();
+        CGText* _mode;    
 };
 
