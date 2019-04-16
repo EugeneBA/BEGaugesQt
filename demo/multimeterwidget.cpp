@@ -12,6 +12,8 @@ MultimeterWidget::MultimeterWidget(QWidget *parent) :
 
     setWindowTitle("Multimeter");
 
+    on__btnU2_toggled(true);
+
     _startTime = QDateTime::currentDateTime();
     QTimer *timer = new QTimer(this);
     timer->setInterval(200);
@@ -49,30 +51,36 @@ void MultimeterWidget::on__btnClose_clicked()
 
 void MultimeterWidget::on__btnU2_toggled(bool checked)
 {
-
+    ui->_meter->setMode("V");
+    ui->_meter->setRange(-2,2);
 }
 
 void MultimeterWidget::on__btnU200m_toggled(bool checked)
 {
-
+    ui->_meter->setMode("mV");
+    ui->_meter->setRange(-200,200);
 }
 
 void MultimeterWidget::on__btnI2_toggled(bool checked)
 {
-
+    ui->_meter->setMode("A");
+    ui->_meter->setRange(-2,2);
 }
 
 void MultimeterWidget::on__btnI200m_toggled(bool checked)
 {
-
+    ui->_meter->setMode("mA");
+    ui->_meter->setRange(-200,200);
 }
 
 void MultimeterWidget::on__btnR2k_toggled(bool checked)
 {
-
+    ui->_meter->setMode("kOm");
+    ui->_meter->setRange(0,2);
 }
 
 void MultimeterWidget::on__btnR200_toggled(bool checked)
 {
-
+    ui->_meter->setMode("Om");
+    ui->_meter->setRange(0,200);
 }

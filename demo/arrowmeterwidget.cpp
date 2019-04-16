@@ -24,19 +24,19 @@ ArrowMeterWidget::ArrowMeterWidget(QWidget *parent) : CGWidget(parent)
     float maxAngle = 30;
 
     auto _outArc = new CGArc(this);
-    _outArc->setrPos(1);
+    _outArc->setrPos(0.97);
     _outArc->setrWidth(8);
     _outArc->setDegreeRange(minAngle,maxAngle);
     _items.append(_outArc);
 
     _ticks = new CGTicks(this);
-    _ticks->setrPos(0.96f);
+    _ticks->setrPos(0.93f);
     _ticks->setrLength(0.04f);
     _ticks->setDegreeRange(minAngle,maxAngle);
     _items.append(_ticks);
 
     _bigTicks = new CGTicks(this);
-    _bigTicks->setrPos(0.925f);
+    _bigTicks->setrPos(0.895f);
     _bigTicks->setrLength(0.075f);
     _bigTicks->setrWidth(4);
     _bigTicks->setDegreeRange(minAngle,maxAngle);
@@ -51,22 +51,22 @@ ArrowMeterWidget::ArrowMeterWidget(QWidget *parent) : CGWidget(parent)
     //        mItems.append(_image);
 
     _vals = new CGValues(this);
-    _vals->setrPos(1.07f);
+    _vals->setrPos(1.06f);
     _vals->setDegreeRange(minAngle,maxAngle);
-    _vals->setrFontSize(32);
+    _vals->setrFontSize(26);
     _items.append(_vals);
 
 
     _value = new CGText(this);
     _value->setrPos(0.60f);
     _value->setAngle(90);
-    _value->setrFontSize(20);
+    _value->setrFontSize(26);
     _items.append(_value);
 
     _mode = new CGText(this);
-    _mode->setrPos(0.30f);
+    _mode->setrPos(0.40f);
     _mode->setAngle(90);
-    _mode->setrFontSize(20);
+    _mode->setrFontSize(32);
     _items.append(_mode);
 
     _needle = new CGTrapezeNeedle(this);
@@ -81,9 +81,28 @@ ArrowMeterWidget::ArrowMeterWidget(QWidget *parent) : CGWidget(parent)
     setGaugeColor(Qt::black);    
 }
 
+void ArrowMeterWidget::setMode(QString mode)
+{
+    _mode->setText(mode);
+}
+
 void ArrowMeterWidget::setValue(float value)
 {
     _needle->setCurrentValue(value);
+    QString strVal;
+    if(value<_needle->minValue())
+    {
+        strVal = QString::fromUtf8("↓ ") + QString::number(_needle->minValue(),'f',1);
+    }
+    else if(value>_needle->maxValue())
+    {
+        strVal = QString::fromUtf8("↑ ") + QString::number(_needle->maxValue(),'f',1);
+    }
+    else
+    {
+        strVal = QString::number(value,'f',1);
+    }
+    _value->setText(strVal);
 }
 
 void ArrowMeterWidget::setRange(float min, float max)

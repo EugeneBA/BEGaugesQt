@@ -10,6 +10,8 @@ public:
 
     void setValueRange(float minValue,float maxValue);
     void setDegreeRange(float minDegree,float maxDegree);
+    inline float minValue(){return _minValue;}
+    inline float maxValue(){return _maxValue;}
 
 protected:
     float getDegFromValue(float);

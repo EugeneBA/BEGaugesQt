@@ -13,6 +13,7 @@ class ArrowMeterWidget:public CGWidget
     public:
         explicit ArrowMeterWidget(QWidget *parent = nullptr);
 
+        void setMode(QString mode);
         void setValue(float value);
         void setRange(float min, float max);
 
