@@ -64,7 +64,7 @@ ArrowMeterWidget::ArrowMeterWidget(QWidget *parent) : CGWidget(parent)
     _items.append(_value);
 
     _mode = new CGText(this);
-    _mode->setrPos(0.40f);
+    _mode->setrPos(0.45f);
     _mode->setAngle(90);
     _mode->setrFontSize(32);
     _items.append(_mode);
@@ -92,11 +92,11 @@ void ArrowMeterWidget::setValue(float value)
     QString strVal;
     if(value<_needle->minValue())
     {
-        strVal = QString::fromUtf8("↓ ") + QString::number(_needle->minValue(),'f',1);
+        strVal = QString::fromUtf8("↓ ") + QString::number(value,'f',1);
     }
     else if(value>_needle->maxValue())
     {
-        strVal = QString::fromUtf8("↑ ") + QString::number(_needle->maxValue(),'f',1);
+        strVal = QString::fromUtf8("↑ ") + QString::number(value,'f',1);
     }
     else
     {

@@ -267,10 +267,10 @@ void CGWidget::paintEvent(QPaintEvent* /*paintEvt*/)
     }
 
 
-    QPen pen;
-    pen.setColor(Qt::black);
-    pen.setWidthF(1);
-    painter.setPen(pen);
+    //QPen pen;
+    //pen.setColor(Qt::black);
+    //pen.setWidthF(1);
+    //painter.setPen(pen);
     //painter.drawRect(gaugeRect());
     //painter.drawRect(rect());
 }

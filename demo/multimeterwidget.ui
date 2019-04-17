@@ -39,7 +39,11 @@
        <number>1</number>
       </property>
       <item>
-       <widget class="ArrowMeterWidget" name="_meter" native="true"/>
+       <widget class="ArrowMeterWidget" name="_meter" native="true">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
