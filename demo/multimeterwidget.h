@@ -1,5 +1,4 @@
-#ifndef MULTIMETERWIDGET_H
-#define MULTIMETERWIDGET_H
+#pragma once
 
 #include <QWidget>
 #include <QDateTime>
@@ -38,6 +37,6 @@ private slots:
 private:
     Ui::MultimeterWidget *ui;
     QDateTime _startTime;
-};
 
-#endif // MULTIMETERWIDGET_H
+    int _filenum;
+};

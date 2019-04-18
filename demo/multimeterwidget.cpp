@@ -3,6 +3,9 @@
 
 #include "QtCore/qmath.h"
 #include "QTimer"
+#include "QDir"
+#include "QPixmap"
+#include "QString"
 
 MultimeterWidget::MultimeterWidget(QWidget *parent) :
     QWidget(parent),
@@ -18,7 +21,11 @@ MultimeterWidget::MultimeterWidget(QWidget *parent) :
     timer->setInterval(200);
     connect(timer, SIGNAL(timeout()), this, SLOT(OnTimerEvent()));
     timer->start();
+
+    _filenum = 0;
 }
+
+
 
 void MultimeterWidget::OnTimerEvent()
 {
@@ -48,6 +55,19 @@ void MultimeterWidget::OnTimerEvent()
 
 
     ui->_meter->setValue(val);
+
+    _filenum++;
+    if(_filenum%3!=0)
+        return;
+
+    const QString format = "png";
+    QString path = QDir::currentPath();
+    path += QString("/screen")+QString::number(_filenum).rightJustified(6,'0')+"." + format;
+
+
+
+     auto originalPixmap = QPixmap::grabWindow(winId());
+       originalPixmap.save(path,format.toAscii());
 }
 
 MultimeterWidget::~MultimeterWidget()
