@@ -68,11 +68,11 @@ void CGNeedle::createCompassNeedle(float r)
 
 
 
-QCRhombusleNeedle::QCRhombusleNeedle(CGWidget *parent) : CGNeedle(parent)
+CGRhombusleNeedle::CGRhombusleNeedle(CGWidget *parent) : CGNeedle(parent)
 {
 }
 
-void QCRhombusleNeedle::draw(QPainter *painter)
+void CGRhombusleNeedle::draw(QPainter *painter)
 {
     painter->save();
     painter->translate(_parent->center());

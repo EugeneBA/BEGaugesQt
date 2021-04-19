@@ -28,10 +28,10 @@ protected:
     void createCompassNeedle(float r);    
 };
 
-class QCRhombusleNeedle : public CGNeedle
+class CGRhombusleNeedle : public CGNeedle
 {
     Q_OBJECT
 public:
-    explicit QCRhombusleNeedle(CGWidget *parent);
+    explicit CGRhombusleNeedle(CGWidget *parent);
     virtual void draw(QPainter *);
 };
