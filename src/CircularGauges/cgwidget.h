@@ -4,16 +4,8 @@
 #include <QWidget>
 
 #include "cgitem.h"
-
-enum EnumCenterPos
-{
-    CenterLeft,
-    CenterCenter,
-    CenterRight,
-    BottomLeft,
-    BottomCenter,
-    BottomRight
-};
+#include "qwitem.h"
+#include "enumcenterpos.h"
 
 class CGWidget : public QWidget
 {
@@ -33,27 +25,33 @@ public:
     static double DegreesToRadians(double deg);
     static double RadiansToDegrees(double rad);
     static void SetInRect(const QRectF& out,QRectF& in);
+    static QPointF getCenterOriginLocation(QRectF rect, EnumCenterPos centerOrigin);
+
+    inline EnumCenterPos centerOrigin(){return _centerPos;}
 
 protected:
-    virtual QSize minimumSizeHint() const;
+    //virtual QSize minimumSizeHint() const;
+    //virtual QSize sizeHint() const;
+    //virtual int heightForWidth(int w) const;
+    //virtual bool hasHeightForWidth() const {return true;}
 
     void addItem(CGItem* item, float position);
     int removeItem(CGItem* item);
-    QList <CGItem*> items();
-    QList <CGItem*> _items;
+    QList <CGItem*> _cgItems;
 
-    EnumCenterPos _centerPos;    
+    void addItem(QWItem* item);
+    int removeItem(QWItem* item);
+    QList <QWItem*> _qwItems;
 
-signals:
+    QWItem* addQWidget(QWidget* widget);
 
-public slots:
+    EnumCenterPos _centerPos;
 
-private:    
+    void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *);
 
-protected:
-    //gauge color
-    QColor _gaugeColor;
-    QColor gaugeColor();
-    virtual void setGaugeColor(const QColor &gaugeColor);    
+
+signals:
+public slots:
+
 };

@@ -36,17 +36,17 @@ void CGItem::setColor(const QColor &color)
 QRectF CGItem::adjustRect(const QRectF& rect, float rpos)
 {
     float radius = _parent->radius();
-    float offset =   radius - rPosToPoints(radius,rpos);
+    float offset =   radius - relToAbs(radius,rpos);
     QRectF tmpRect = rect.adjusted(offset,offset,-offset,-offset);
     return tmpRect;
 }
 
-float CGItem::rPosToPoints(float r, float rpos)
+float CGItem::relToAbs(float basis, float relValue)
 {
-    if(rpos<=0)
+    if(relValue<=0)
         return 0.0f;
-    if(rpos>=1.45)
-        return rpos;
+    if(relValue>=1.45)
+        return relValue;
 
-    return r*rpos;
+    return basis*relValue;
 }

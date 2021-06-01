@@ -24,7 +24,7 @@ public:
 
 protected:
     QRectF adjustRect(const QRectF& rect, float rpos);
-    float rPosToPoints(float r, float rpos);
+    float relToAbs(float basis, float relValue);
 
     void update();
 

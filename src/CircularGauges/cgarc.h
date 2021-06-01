@@ -1,5 +1,4 @@
-#ifndef QCARC_H
-#define QCARC_H
+#pragma once
 
 #include "cgscale.h"
 
@@ -17,4 +16,3 @@ protected:
     float _rWidth;
 };
 
-#endif // QCARC_H

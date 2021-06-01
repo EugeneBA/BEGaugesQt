@@ -16,7 +16,7 @@ void CGValues::draw(QPainter*painter)
     QRectF rect = _parent->rect();
 
     QFont font(_parent->font());
-    font.setPointSizeF(rPosToPoints(r,_rFontSize));
+    font.setPointSizeF(relToAbs(r,_rFontSize));
     font.setWeight(_boldFont?QFont::Bold:QFont::Normal);
     painter->setFont(font);
 
@@ -24,7 +24,7 @@ void CGValues::draw(QPainter*painter)
     for(float val = _minValue;val<=_maxValue;val+=_step)
     {
         float deg = getDegFromValue(val);
-        QPointF pt = _parent->point(rPosToPoints(r, _rPos), deg);
+        QPointF pt = _parent->point(relToAbs(r, _rPos), deg);
 
         QString strVal = QString::number(val);
         QFontMetrics fMetrics = painter->fontMetrics();

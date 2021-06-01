@@ -16,9 +16,9 @@ void CGTrapezeNeedle::draw(QPainter *painter)
     painter->setPen(Qt::NoPen);
 
     float r = _parent->radius();
-    float origin = rPosToPoints(r,_rPos);
-    float length = rPosToPoints(r,_rLength);
-    float width = rPosToPoints(r,_rWidth);
+    float origin = relToAbs(r,_rPos);
+    float length = relToAbs(r,_rLength);
+    float width = relToAbs(r,_rWidth);
     float smallwidth = width*_aspect;
 
     QVector<QPointF> points;

@@ -87,24 +87,33 @@ float CGWidget::radius()
 
 QPointF CGWidget::center()
 {
-    QRectF wrect = contentsRect();
-    //wrect.adjust(_padding,_padding,-_padding,-_padding);
-    QPointF center = wrect.center();
-    switch (_centerPos)
+    return getCenterOriginLocation(contentsRect(), _centerPos);
+}
+
+QPointF CGWidget::getCenterOriginLocation(QRectF rect, EnumCenterPos centerOrigin)
+{
+    QPointF center = rect.center();
+    switch (centerOrigin)
     {
+    case EnumCenterPos::TopLeft:
+        return rect.topLeft();
+
+    case EnumCenterPos::TopRight:
+        return rect.topRight();
+
     case EnumCenterPos::CenterLeft:
-        center.setX(wrect.left());
+        center.setX(rect.left());
         return center;
     case EnumCenterPos::CenterRight:
-        center.setX(wrect.right());
+        center.setX(rect.right());
         return center;
 
     case EnumCenterPos::BottomLeft:
-        return wrect.bottomLeft();
+        return rect.bottomLeft();
     case EnumCenterPos::BottomRight:
-        return wrect.bottomRight();
+        return rect.bottomRight();
     case EnumCenterPos::BottomCenter:
-        center.setY(wrect.bottom());
+        center.setY(rect.bottom());
         return center;
 
     default:
@@ -216,44 +225,89 @@ double CGWidget::RadiansToDegrees(double rad)
     return rad * 180  / M_PI ;
 }
 
-QSize CGWidget::minimumSizeHint() const
-{
-    auto size = geometry().size();
-    auto h = size.height();
-    switch (_centerPos)
-    {
-    case EnumCenterPos::CenterLeft:
-    case EnumCenterPos::CenterRight:
-        size.setWidth(qMax(h/2,15));
-        break;
+//QSize CGWidget::minimumSizeHint() const
+//{
+//    auto size = geometry().size();
+//    auto h = size.height();
+//    switch (_centerPos)
+//    {
+//    case EnumCenterPos::CenterLeft:
+//    case EnumCenterPos::CenterRight:
+//        size.setWidth(qMax(h/2,15));
+//        break;
 
-    case EnumCenterPos::BottomCenter:
-        size.setWidth(qMax(h*2,15));
-        break;
+//    case EnumCenterPos::BottomCenter:
+//        size.setWidth(qMax(h*2,15));
+//        break;
 
-    default:
-        size.setWidth(qMax(h,15));
-    }
+//    default:
+//        size.setWidth(qMax(h,15));
+//    }
  
-    return size;
-}
+//    return size;
+//}
+
+//QSize CGWidget::sizeHint() const
+//{
+//    auto size = QWidget::sizeHint();
+//    if(!size.isValid())
+//        size = geometry().size();
+//    auto h = size.height();
+//    auto w = size.width();
+//    switch (_centerPos)
+//    {
+//    case EnumCenterPos::BottomCenter:
+//        size.setWidth(w/2);
+//        break;
+//    }
+
+//    return size;
+//}
+
+//int CGWidget::heightForWidth(int w) const
+//{
+//    auto h = QWidget::heightForWidth(w);
+//    switch (_centerPos)
+//    {
+//    case EnumCenterPos::BottomCenter:
+//        h = w/2;
+//        break;
+//    }
+
+//    return h;
+//}
 
 void CGWidget::addItem(CGItem *item,float position)
 {
     // takes parentship of the item
     item->setParent(this);
     item->setrPos(position);
-    _items.append(item);
+    _cgItems.append(item);
 }
 
 int CGWidget::removeItem(CGItem *item)
 {
-    return _items.removeAll(item);
+    return _cgItems.removeAll(item);
 }
 
-QList<CGItem *> CGWidget::items()
+QWItem* CGWidget::addQWidget(QWidget* widget)
 {
-    return _items;
+    QWItem* item = new QWItem(this,widget);
+    _qwItems.append(item);
+    return item;
+}
+
+void CGWidget::addItem(QWItem *item)
+{
+    // takes parentship of the item
+    //item->setParent(this);
+    //item->setrPos(position);
+    _qwItems.append(item);
+}
+
+int CGWidget::removeItem(QWItem *item)
+{
+    return _qwItems.removeAll(item);
 }
 
 void CGWidget::paintEvent(QPaintEvent* /*paintEvt*/)
@@ -261,29 +315,31 @@ void CGWidget::paintEvent(QPaintEvent* /*paintEvt*/)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    foreach (CGItem * item, _items)
+    foreach (CGItem * item, _cgItems)
     {
         item->draw(&painter);
     }
 
-
-    //QPen pen;
-    //pen.setColor(Qt::black);
-    //pen.setWidthF(1);
-    //painter.setPen(pen);
-    //painter.drawRect(gaugeRect());
-    //painter.drawRect(rect());
+#if defined(DEBUG)
+    QPen pen;
+    pen.setColor(Qt::black);
+    pen.setWidthF(1);
+    painter.setPen(pen);
+    painter.drawRect(gaugeRect());
+    painter.drawRect(rect());
+#endif
 }
 
-QColor CGWidget::gaugeColor()
-{
-    return _gaugeColor;
-}
+void CGWidget::resizeEvent(QResizeEvent *event)
+ {
+    QWidget::resizeEvent(event);
 
-void CGWidget::setGaugeColor(const QColor &gaugeColor)
-{
-    _gaugeColor = gaugeColor;
-}
+    foreach (QWItem* item, _qwItems)
+    {
+        item->updateSize();
+        item->updateLoc();
+    }
+ }
 
 void CGWidget::SetInRect(const QRectF &out, QRectF &in)
 {

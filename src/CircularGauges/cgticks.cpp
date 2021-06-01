@@ -18,9 +18,9 @@ void CGTicks::draw(QPainter *painter)
 
     float r = _parent->radius();
 
-    float origin = rPosToPoints(r,_rPos);
-    float length = rPosToPoints(r,_rLength);
-    float width = rPosToPoints(r,_rWidth);
+    float origin = relToAbs(r,_rPos);
+    float length = relToAbs(r,_rLength);
+    float width = relToAbs(r,_rWidth);
 
     for(float val = _minValue;val<=_maxValue;val+=_step)
     {

@@ -14,7 +14,7 @@ void CGArc::draw(QPainter *painter)
 
     QPen pen;
     pen.setColor(_color);
-    pen.setWidthF(rPosToPoints(r,_rWidth));
+    pen.setWidthF(relToAbs(r,_rWidth));
     painter->setPen(pen);
     painter->drawArc(arcRect,16*_minDegree,16*(_maxDegree-_minDegree));
 }
